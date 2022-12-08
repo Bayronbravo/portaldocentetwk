@@ -11,17 +11,14 @@ const alumnosSchema = mongoose.Schema({
         type:String,
         required: true,
     },
-    asignaturas:[
-        {
-            type:mongoose.Schema.Types.ObjectId,
-            ref:'asignaturas',
-            autopopulate: true,
-        },
-    ]
+    asignaturas: [{
+        _id: String,
+        notas: [String],
+        asistencia: [Date]
+    }],
+    
+    
 });
 
-alumnosSchema.plugin(require('mongoose-autopopulate'));
 
 module.exports = mongoose.model('Alumno', alumnosSchema);
-
-  

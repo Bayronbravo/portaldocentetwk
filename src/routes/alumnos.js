@@ -21,11 +21,11 @@ router.get("/students", (req, res) => {
 //editar alumno
 router.put("/alumnos/:id", (req, res) => {
     const { id } = req.params;
-    const { asignaturas } = req.body;
-
+    const { nlista,asignaturas,notas,asistencia } = req.body;
+ 
 
     alumnosSchema
-        .updateOne({ _id: id },{ $set: { asignaturas } })
+        .updateOne({ _id: id },{ $set: { nlista,asignaturas,notas,asistencia } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
@@ -38,6 +38,8 @@ router.delete("/alumnos/:id", (req, res) => {
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });
+
+
 
 //ver alumnos por id
 router.get('/alumnos/:id', (req, res) => {

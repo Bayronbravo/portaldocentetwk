@@ -39,5 +39,14 @@ router.delete("/asignaturas/:id", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
+//ver asignaturas por id
+router.get('/asignaturas/:id', (req, res) => {
+    const { id } = req.params;
+    asignaturaSchema
+        .findById(id)
+        .then((dato) => res.json(dato))
+        .catch((error) => res.json({ message: error }));
+});
+
 
 module.exports = router;

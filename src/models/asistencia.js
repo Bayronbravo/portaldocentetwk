@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 
 const asistenciaSchema = mongoose.Schema({
-    asistencia: {
+    
+    asistencia: [{
         type: Date,
         required: true,
         unique: true
-    },
+    }],
 
 });
 

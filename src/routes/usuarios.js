@@ -45,9 +45,9 @@ router.get("/usuarios/:id", (req, res) => {
 //editar usuarios
 router.put("/usuarios/:id", (req, res) => {
     const { id } = req.params;
-    const { rut, password } = req.body;
+    const { rut, password, asignaturas } = req.body;
     userSchema
-        .updateOne({ _id: id },{ $set: { rut, password } })
+        .updateOne({ _id: id },{ $set: { rut, password, asignaturas } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));        
 });
