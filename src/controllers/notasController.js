@@ -1,6 +1,6 @@
-/* const studentService = require("../services/studentService");
+const studentService = require("../services/studentService");
 
-const addNota = async (req, res) => {
+/* const addNota = async (req, res) => {
     const { id } = req.params;
     const { idAsignatura, nota } = req.body;
 
@@ -30,34 +30,46 @@ const addNota = async (req, res) => {
                 }]    
             }]
         });
-
-
-const editNota = async (req, res) => {
-    const { id } = req.params;
-    const { idAsignatura, notas } = req.body;
-        try {
-        const student = await studentService.putStudentByNotas(id, {
-        "nombre": "(nombre alumno)",
-        "nlista":"(numero de lista)",
-        "asignaturas":[{
-            "_id":"(Id asignatura)",
-            "notas":[
-                "(0.0)",
-                ],
-            "asistencia":[
-                "(0000-00-00 00:00:00)",
-            ]}
-        ]});} 
+}
 
 catch (error) {
     console.log(error);
 };
+} */
 
+const editNota = async (req, res) => {
+    const { id } = req.params;
+    const { _id, notas } = req.body;
+        try {
+        const student = await studentService.putStudentById(
+            id,
+            { "$set" : {"asignaturas.$[i].notas" : notas} }, 
+            {"arrayFilters" :[ { "i._id" : _id} ], new : true});
+    res.send(student);
+}
+
+catch (error) {
+    console.log(error);
+};
+}
 
 
 
 
 module.exports = {
-    addNota,
     editNota
-} */
+}
+
+
+/* {
+    "nombre": "(nombre alumno)",
+    "nlista":"(numero de lista)",
+    "asignaturas":[{
+        "_id":"(Id asignatura)",
+        "notas":[
+            "(0.0)",
+            ],
+        "asistencia":[
+            "(0000-00-00 00:00:00)",
+    ]}
+]} */

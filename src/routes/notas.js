@@ -1,5 +1,6 @@
 const express = require ("express");
 const notaSchema = require  ("../models/notas");
+const notasController = require("../controllers/notasController");
 
 const router = express.Router();
 
@@ -28,6 +29,11 @@ router.put("/notas/:id", (req, res) => {
         .updateOne({ _id: id },{ $set: { nota } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
+});
+
+
+router.post("/notasbyid/:id", (req, res) => {
+    notasController.editNota(req, res);
 });
 
 //eliminar nota

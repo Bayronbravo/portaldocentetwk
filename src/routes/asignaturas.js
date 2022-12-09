@@ -23,9 +23,9 @@ router.get("/asignaturas", (req, res) => {
 //editar asignatura
 router.put("/asignaturas/:id", (req, res) => {
     const { id } = req.params;
-    const { nombre,notas,asistencia } = req.body;
+    const { nombre, numnotas } = req.body;
     asignaturaSchema
-        .updateOne({ _id: id },{ $set: { nombre,notas,asistencia } })
+        .updateOne({ _id: id },{ $set: { nombre, numnotas } })
         .then((data) => res.json(data))
         .catch((error) => res.json({ message: error }));
 });

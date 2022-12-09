@@ -1,5 +1,6 @@
 const express = require ("express");
 const asistenciaSchema = require  ("../models/asistencia");
+const asistenciaController = require ("../controllers/asistenciaController");
 
 const router = express.Router();
 
@@ -20,7 +21,9 @@ router.get("/asistencias", (req, res) => {
         .catch((error) => res.json({ message: error }));
 });
 
-
+router.post("/postasistenciabyid/:id", (req, res) => {
+    asistenciaController.editFecha(req, res);
+});
 
 //editar asistencia
 router.put("/asistencias/:id", (req, res) => {

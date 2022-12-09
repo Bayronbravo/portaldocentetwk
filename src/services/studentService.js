@@ -6,16 +6,16 @@ const getStudents = async (req, res) => {
     return await alumnosSchema.find();
 };
 
-const putStudentById = async (id, b) => {
-    return await alumnosSchema.findByIdAndUpdate(id, b);
+const putStudentById = async (id, b, c) => {
+    return await alumnosSchema.findByIdAndUpdate(id, b, c);
 };
 
-const putStudentByNotas = async (id, notas) => {
+/* const putStudentByNotas = async (id, notas) => {
     return await alumnosSchema.findByIdAndUpdate(id, notas);
-}
+} */
 
 
 module.exports = {
     getStudents,
-    putStudentByNotas
+    putStudentById
 };
