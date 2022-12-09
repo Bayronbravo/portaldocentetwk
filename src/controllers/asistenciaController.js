@@ -7,7 +7,7 @@ const editFecha = async (req, res) => {
         try {
         const student = await studentService.putStudentById(
             id,
-            { "$push" : {"asignaturas.$[i].asistencia" : Date()} },
+            { "$push" : {"asignaturas.$[i].asistencia" : new Date()} },
             {"arrayFilters" :[ { "i._id" : _id} ], new : true});
     res.send(student);
 }
